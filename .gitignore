@@ -1,0 +1,25 @@
+# ----------------------------------------------------
+# Garmin Connect IQ / Monkey C
+# ----------------------------------------------------
+
+# Build output
+bin/
+*.prg
+*.iq
+
+# Device logs & debug artifacts
+*.log
+
+# Developer key
+*.pem
+
+# ----------------------------------------------------
+# General
+# ----------------------------------------------------
+
+# OS generated files
+.DS_Store
+
+# Temp files
+*.tmp
+*.swp
