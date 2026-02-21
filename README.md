@@ -1,6 +1,6 @@
 # Golf Round Tracker (Garmin Connect IQ)
 
-A lightweight Garmin Connect IQ **Device App** for tracking golf rounds on watches that do not natively support Garmin’s Golf activity.
+A free lightweight Garmin Connect IQ **Device App** for tracking golf rounds on watches that do not natively support Garmin’s Golf activity.
 
 ## Features
 
