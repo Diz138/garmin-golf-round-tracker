@@ -12,6 +12,7 @@ bin/
 
 # Developer key
 *.pem
+developer_key
 
 # ----------------------------------------------------
 # General
@@ -19,6 +20,7 @@ bin/
 
 # OS generated files
 .DS_Store
+.vscode/
 
 # Temp files
 *.tmp
