@@ -18,7 +18,7 @@ class golf_round_trackerApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [ new golf_round_trackerView(), new golf_round_trackerDelegate() ];
+        return [new golf_round_startView(), new golf_round_startDelegate()];
     }
 
 }
