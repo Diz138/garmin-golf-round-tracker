@@ -15,7 +15,7 @@ class golf_round_endView extends WatchUi.View {
             dc.getWidth() / 2,
             dc.getHeight() / 3,
             Graphics.FONT_MEDIUM,
-            "Round Complete!",
+            "Round Complete",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 

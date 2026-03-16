@@ -10,6 +10,9 @@ class golf_round_trackerApp extends Application.AppBase {
 
     // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
+        for (var i = 0; i < 18; i++) {
+            holeScores.put(i, 0);
+        }
     }
 
     // onStop() is called when your application is exiting
@@ -18,7 +21,8 @@ class golf_round_trackerApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [new golf_round_startView(), new golf_round_startDelegate()];
+        return [new golf_round_courseSelectView(), new golf_round_courseSelectDelegate()];
+        // return [new golf_round_startView(), new golf_round_startDelegate()];
     }
 
 }

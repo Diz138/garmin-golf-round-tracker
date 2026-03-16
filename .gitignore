@@ -25,3 +25,6 @@ developer_key
 # Temp files
 *.tmp
 *.swp
+
+# API keys and secrets
+.env
