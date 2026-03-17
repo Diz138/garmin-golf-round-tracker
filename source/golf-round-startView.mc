@@ -7,36 +7,60 @@ class golf_round_startView extends WatchUi.View {
     }
 
     function onUpdate(dc as Dc) as Void {
+        var width = dc.getWidth();
+        var height = dc.getHeight();
+        var centerX = width / 2;
+
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
 
         // Title
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
-            dc.getWidth() / 2,
-            dc.getHeight() / 2,
+            centerX,
+            height / 5,
             Graphics.FONT_MEDIUM,
-            "Golf Round Tracker",
+            "Start Round",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        // 9 holes option
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        // Divider line under title
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawLine(width / 4, height / 3, width * 3 / 4, height / 3);
+
+        // 9 holes row
+        var nineY = height * 5 / 9;
+        if (holeSelection == 0) {
+            // Highlighted background
+            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_LT_GRAY);
+            dc.fillRectangle(0, nineY - 20, width, 40);
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        } else {
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        }
         dc.drawText(
-            dc.getWidth() / 2,
-            dc.getHeight() / 1.5,
+            centerX,
+            nineY,
             Graphics.FONT_SMALL,
-            "UP: 9 Holes",
+            "9 Holes",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        // 18 holes option
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        // 18 holes row
+        var eighteenY = height * 7 / 9;
+        if (holeSelection == 1) {
+            // Highlighted background
+            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_LT_GRAY);
+            dc.fillRectangle(0, eighteenY - 20, width, 40);
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        } else {
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        }
         dc.drawText(
-            dc.getWidth() / 2,
-            dc.getHeight() / 1.25,
+            centerX,
+            eighteenY,
             Graphics.FONT_SMALL,
-            "DOWN: 18 Holes",
+            "18 Holes",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
     }

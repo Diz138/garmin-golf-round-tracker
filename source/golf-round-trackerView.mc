@@ -32,7 +32,7 @@ class golf_round_trackerView extends WatchUi.View {
 
         // Show course name if not free play
         if (!selectedCourse.equals("Free Play") && !selectedCourse.equals("")) {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
                 dc.getWidth() / 2,
                 dc.getHeight() * 7/8,
@@ -54,15 +54,19 @@ class golf_round_trackerView extends WatchUi.View {
 
         // Par for current hole if course selected
         if (coursePars.size() > 0) {
-            var par = coursePars.get(holeCounter - 1);
-            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(
-                dc.getWidth() / 7,
-                dc.getHeight() /2,
-                Graphics.FONT_SMALL,
-                "Par: " + par,
-                Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
-            );
+            if (coursePars.size() > 0) {
+                var par = coursePars.get(holeCounter - 1);
+                if (par != null) {
+                    dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+                    dc.drawText(
+                        dc.getWidth() / 7,
+                        dc.getHeight() / 2,
+                        Graphics.FONT_SMALL,
+                        "Par: " + (par).toString(),
+                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+                    );
+                }
+            }
         }
 
         // Shot counter

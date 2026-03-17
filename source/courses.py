@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 import os
 from dotenv import load_dotenv
 
@@ -9,8 +10,19 @@ API_KEY = os.getenv("API_KEY")
 BASE_URL = "https://api.golfcourseapi.com/v1"
 
 COURSES = [
+    "Pine Meadows Golf Course",
+    "Butternut Farm Golf Course",
     "Pine Ridge Country Club",
-    "Sagamore Spring Golf Club"
+    "Sagamore Spring Golf Club",
+    "Patriot Golf Course",
+    "Meadow Brook Golf Club",
+    "George Wright Golf Course",
+    "William J. Devine Golf Course",
+    "Butter Brook Golf Club",
+    "Gannon Municipal Golf Course",
+    "Stow Acres Country Club",
+    "Shaker Hills Country Club",
+    "Far Corner Golf"
 ]
 
 headers = {
@@ -50,6 +62,7 @@ def main():
     all_courses = {}
 
     for course_name in COURSES:
+        time.sleep(1) 
         print(f"Searching for: {course_name}...")
         result = search_course(course_name)
 

@@ -36,6 +36,11 @@ class golf_round_courseSelectDelegate extends WatchUi.BehaviorDelegate {
             return true;
         }
 
+        if (key == 5) { // Back - exit app
+            System.exit();
+        }
+        
+
         return false;
     }
 
