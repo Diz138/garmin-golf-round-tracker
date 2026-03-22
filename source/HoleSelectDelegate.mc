@@ -1,35 +1,23 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
-import Toybox.System;
 
-class golf_round_startDelegate extends WatchUi.BehaviorDelegate {
+class golf_round_holeSelectDelegate extends WatchUi.BehaviorDelegate {
     function initialize() {
         BehaviorDelegate.initialize();
     }
 
     function onKey(keyEvent as KeyEvent) as Boolean {
         var key = keyEvent.getKey();
+        var model = getApp().model;
 
-        if (key == 13) { // Up - highlight 9 holes
-            holeSelection = 0;
+        if (key == WatchUi.KEY_UP || key == WatchUi.KEY_DOWN) {
+            model.holeSelection = (model.holeSelection == 0) ? 1 : 0;
             WatchUi.requestUpdate();
             return true;
         }
 
-        if (key == 8) { // Down - highlight 18 holes
-            holeSelection = 1;
-            WatchUi.requestUpdate();
-            return true;
-        }
-
-        if (key == 4) { // Enter - confirm
-            if (holeSelection == 0) {
-                totalHoles = 9;
-            } else {
-                totalHoles = 18;
-            }
-            holeCounter = 1;
-            counter = 0;
+        if (key == WatchUi.KEY_ENTER) {
+            model.confirmHoleSelection();
             WatchUi.switchToView(
                 new golf_round_trackerView(),
                 new golf_round_trackerDelegate(),
@@ -38,8 +26,7 @@ class golf_round_startDelegate extends WatchUi.BehaviorDelegate {
             return true;
         }
 
-        if (key == 5) { // Back - return to course selection
-            holeSelection = 0;
+        if (key == WatchUi.KEY_ESC) {
             WatchUi.switchToView(
                 new golf_round_courseSelectView(),
                 new golf_round_courseSelectDelegate(),

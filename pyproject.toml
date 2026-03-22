@@ -1,0 +1,13 @@
+[project]
+name = "garmin-golf-course"
+version = "0.1.0"
+description = "Scripts for fetching and generating golf course data for the Garmin Golf Round Tracker"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "jinja2>=3.1.0",
+]
+
+[dependency-groups]
+dev = []
