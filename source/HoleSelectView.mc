@@ -1,7 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 
-class golf_round_startView extends WatchUi.View {
+class golf_round_holeSelectView extends WatchUi.View {
     function initialize() {
         View.initialize();
     }
@@ -10,6 +10,7 @@ class golf_round_startView extends WatchUi.View {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var centerX = width / 2;
+        var holeSelection = getApp().model.holeSelection;
 
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
@@ -31,7 +32,6 @@ class golf_round_startView extends WatchUi.View {
         // 9 holes row
         var nineY = height * 5 / 9;
         if (holeSelection == 0) {
-            // Highlighted background
             dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_LT_GRAY);
             dc.fillRectangle(0, nineY - 20, width, 40);
             dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
@@ -49,7 +49,6 @@ class golf_round_startView extends WatchUi.View {
         // 18 holes row
         var eighteenY = height * 7 / 9;
         if (holeSelection == 1) {
-            // Highlighted background
             dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_LT_GRAY);
             dc.fillRectangle(0, eighteenY - 20, width, 40);
             dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
