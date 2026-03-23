@@ -3,12 +3,17 @@ import Toybox.WatchUi;
 
 class golf_round_trackerView extends WatchUi.View {
 
+    var _hole as WatchUi.Drawable?;
+    var _ball as WatchUi.Drawable?;
+
     function initialize() {
         View.initialize();
     }
 
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
+        _hole = findDrawableById("hole");
+        _ball = findDrawableById("ball");
     }
 
     function onShow() as Void {}
@@ -18,8 +23,8 @@ class golf_round_trackerView extends WatchUi.View {
 
         View.onUpdate(dc);
         dc.clear();
-        findDrawableById("hole").draw(dc);
-        findDrawableById("ball").draw(dc);
+        _hole.draw(dc);
+        _ball.draw(dc);
 
         // Show course name if not free play
         if (!model.isFreePlay()) {

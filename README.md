@@ -4,7 +4,7 @@ A free lightweight Garmin Connect IQ **Device App** for tracking golf rounds on 
 
 ## Features
 
-- Start / Pause / End a round
+- Start / End a round
 - Hole-by-hole stroke entry
 
 No course maps. No subscriptions. Just simple, reliable round tracking.
@@ -40,7 +40,7 @@ Additional devices can be added after testing.
 
 ### Prerequisites
 
-- [Java 11+]
+- [Java 11+](https://adoptium.net)
 - [Garmin Connect IQ SDK](https://developer.garmin.com/connect-iq/sdk/) (install via SDK Manager)
 - [VS Code](https://code.visualstudio.com) with the [Monkey C extension](https://marketplace.visualstudio.com/items?itemName=garmin.monkey-c)
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager, for course data scripts)
@@ -58,7 +58,7 @@ A `developer_key` is required to sign builds. Generate one via `Cmd+Shift+P` →
 
 ### Course Data Scripts
 
-The scripts in `source/` fetch course data from the [Golf Course API](https://golfcourseapi.com) and generate Monkey C source code from the results.
+The scripts in `tools/` fetch course data from the [Golf Course API](https://golfcourseapi.com) and generate Monkey C source code from the results.
 
 1. Copy `.env.example` to `.env` and add your API key:
    ```bash
@@ -70,14 +70,14 @@ The scripts in `source/` fetch course data from the [Golf Course API](https://go
    uv sync
    ```
 
-3. Fetch course data (writes `courses.json`):
+3. Fetch course data (writes `tools/data/courses.json`):
    ```bash
-   uv run source/courses.py
+   uv run tools/courses.py
    ```
 
-4. Generate Monkey C source from the fetched data (writes `source/courseData.mc`):
+4. Generate Monkey C source from the fetched data (writes `source/data/courseData.mc`):
    ```bash
-   uv run source/course_data.py
+   uv run tools/course_data.py
    ```
 
 ### Planned Features

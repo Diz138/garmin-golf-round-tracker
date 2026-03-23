@@ -2,8 +2,9 @@ import json
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
+REPO_ROOT = Path(__file__).parent.parent
 
-def generate_monkey_c(json_path: str, output_path: str) -> None:
+def generate_monkey_c(json_path: Path | str, output_path: Path | str) -> None:
     with open(json_path) as f:
         data = json.load(f)
 
@@ -44,4 +45,7 @@ def generate_monkey_c(json_path: str, output_path: str) -> None:
 
 
 if __name__ == "__main__":
-    generate_monkey_c("courses.json", "source/data/courseData.mc")
+    generate_monkey_c(
+        REPO_ROOT / "tools" / "data" / "courses.json",
+        REPO_ROOT / "source" / "data" / "courseData.mc",
+    )

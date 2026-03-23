@@ -29,8 +29,9 @@ class RoundModel {
         holeScores = {} as Dictionary<Number, Number>;
     }
 
-    // Set the selected course and load its par data
+    // Set the selected course and load its par data. Clears any previously loaded par data.
     function selectCourse(name as String) as Void {
+        coursePars = {} as Dictionary<Number, Number>;
         selectedCourse = name;
         if (!name.equals("Free Play") && !name.equals("")) {
             var pars = getParsForCourse(name) as Array<Number>;
