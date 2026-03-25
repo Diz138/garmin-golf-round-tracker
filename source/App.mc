@@ -4,21 +4,19 @@ import Toybox.WatchUi;
 
 class golf_round_trackerApp extends Application.AppBase {
 
+    var model as RoundModel;
+
     function initialize() {
         AppBase.initialize();
+        model = new RoundModel();
     }
 
-    // onStart() is called on application start up
-    function onStart(state as Dictionary?) as Void {
-    }
+    function onStart(state as Dictionary?) as Void {}
 
-    // onStop() is called when your application is exiting
-    function onStop(state as Dictionary?) as Void {
-    }
+    function onStop(state as Dictionary?) as Void {}
 
-    // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [new golf_round_startView(), new golf_round_startDelegate()];
+        return [new golf_round_courseSelectView(), new golf_round_courseSelectDelegate()];
     }
 
 }
