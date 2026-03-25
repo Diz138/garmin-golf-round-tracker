@@ -2,6 +2,7 @@ import requests
 import json
 import time
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,59 +26,63 @@ COURSES = [
     "Far Corner Golf"
 ]
 
+OUTPUT_PATH = Path(__file__).parent / "data" / "courses.json"
+
 headers = {
     "Authorization": f"Key {API_KEY}"
 }
 
-def search_course(name):
-    response = requests.get(
-        f"{BASE_URL}/search",
-        headers=headers,
-        params={"search_query": name}
-    )
-    if response.status_code == 200:
+
+def search_course(name: str) -> dict | None:
+    try:
+        response = requests.get(
+            f"{BASE_URL}/search",
+            headers=headers,
+            params={"search_query": name}
+        )
+        response.raise_for_status()
         results = response.json()
         courses = results.get("courses", [])
-        if courses:
-            return courses[0]  # Take the top result
-        else:
+        if not courses:
             print(f"No results found for: {name}")
             return None
-    else:
-        print(f"Error fetching {name}: {response.status_code}")
+        return courses[0]
+    except requests.RequestException as e:
+        print(f"Error fetching {name}: {e}")
         return None
 
-def get_course_details(course_id):
-    response = requests.get(
-        f"{BASE_URL}/courses/{course_id}",
-        headers=headers
-    )
-    if response.status_code == 200:
+
+def get_course_details(course_id: str | int) -> dict | None:
+    try:
+        response = requests.get(
+            f"{BASE_URL}/courses/{course_id}",
+            headers=headers
+        )
+        response.raise_for_status()
         return response.json()
-    else:
-        print(f"Error fetching course details for ID {course_id}: {response.status_code}")
+    except requests.RequestException as e:
+        print(f"Error fetching course details for ID {course_id}: {e}")
         return None
 
-def main():
+
+def main() -> None:
     all_courses = {}
 
     for course_name in COURSES:
-        time.sleep(1) 
-        print(f"Searching for: {course_name}...")
+        time.sleep(1) # Rate limiting
         result = search_course(course_name)
-
         if result:
             course_id = result.get("id")
-            print(f"Found: {result.get('club_name')} (ID: {course_id})")
 
             details = get_course_details(course_id)
             if details:
                 all_courses[course_name] = details
                 print(f"Fetched details for: {course_name}")
 
-    with open("courses.json", "w") as f:
+    with open(OUTPUT_PATH, "w") as f:
         json.dump(all_courses, f, indent=2)
-        print("\nSaved all course data to courses.json")
+    print(f"\nSaved all course data to {OUTPUT_PATH}")
+
 
 if __name__ == "__main__":
     main()

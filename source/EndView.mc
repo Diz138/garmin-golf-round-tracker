@@ -10,11 +10,12 @@ class golf_round_endView extends WatchUi.View {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var centerX = width / 2;
+        var model = getApp().model;
 
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
 
-        // Top green banner
+        // Top banner
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_LT_GRAY);
         dc.fillRectangle(0, 0, width, height / 5);
 
@@ -30,7 +31,7 @@ class golf_round_endView extends WatchUi.View {
 
         // Course name or Free Play
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        var displayCourse = selectedCourse.equals("") ? "Free Play" : selectedCourse;
+        var displayCourse = model.isFreePlay() ? "Free Play" : model.selectedCourse;
         dc.drawText(
             centerX,
             height * 3 / 10,
@@ -49,17 +50,17 @@ class golf_round_endView extends WatchUi.View {
             centerX,
             height / 2,
             Graphics.FONT_SMALL,
-            totalHoles + " Holes",
+            model.totalHoles + " Holes",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        // Total strokes - large and prominent
+        // Total strokes
         dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             centerX,
             height * 3.5 / 5,
             Graphics.FONT_SMALL,
-            totalStrokes.toString(),
+            model.totalStrokes.toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
@@ -73,15 +74,8 @@ class golf_round_endView extends WatchUi.View {
         );
 
         // Score relative to par if course was selected
-        if (coursePars.size() > 0) {
-            var totalPar = 0;
-            for (var i = 0; i < totalHoles; i++) {
-                var par = coursePars.get(i);
-                if (par != null) {
-                    totalPar += par;
-                }
-            }
-            var scoreToPar = totalStrokes - totalPar;
+        if (!model.isFreePlay()) {
+            var scoreToPar = model.getScoreToPar();
             var scoreLabel = "";
             if (scoreToPar == 0) {
                 scoreLabel = "E";
@@ -91,7 +85,6 @@ class golf_round_endView extends WatchUi.View {
                 scoreLabel = scoreToPar.toString();
             }
 
-            // Color based on over/under par
             if (scoreToPar < 0) {
                 dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
             } else if (scoreToPar == 0) {

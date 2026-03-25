@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE - DO NOT EDIT MANUALLY
-// Run generate_course_data.py to regenerate
+// Run `uv run tools/course_data.py` to regenerate
 
 import Toybox.Lang;
 
@@ -44,4 +44,4 @@ function getParsForCourse(name as String) as Array<Number> {
 }
 
 // Course list for the selection screen
-var courseList = ["Free Play", "Pine Meadows", "Pine Ridge CC", "Sagamore Spring", "Patriot", "Meadow Brook", "George Wright", "William J. Devine", "Butter Brook", "Gannon Municipal", "Stow Acres CC", "Shaker Hills CC", "Far Corner Golf"] as Array<String>;
+const courseList = ["Free Play", "Pine Meadows", "Pine Ridge CC", "Sagamore Spring", "Patriot", "Meadow Brook", "George Wright", "William J. Devine", "Butter Brook", "Gannon Municipal", "Stow Acres CC", "Shaker Hills CC", "Far Corner Golf"] as Array<String>;

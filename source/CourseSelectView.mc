@@ -1,8 +1,6 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 
-var courseIndex = 0; // courseList is now generated in CourseData.mc
-
 class golf_round_courseSelectView extends WatchUi.View {
     function initialize() {
         View.initialize();
@@ -12,6 +10,7 @@ class golf_round_courseSelectView extends WatchUi.View {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var centerX = width / 2;
+        var courseIndex = getApp().model.courseIndex;
 
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
@@ -42,7 +41,7 @@ class golf_round_courseSelectView extends WatchUi.View {
             );
         }
 
-        // Selected course - green highlight in the middle
+        // Selected course - highlight in the middle
         var selectedY = height / 2;
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_LT_GRAY);
         dc.fillRectangle(0, selectedY - 20, width, 40);
