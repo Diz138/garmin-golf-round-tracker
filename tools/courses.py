@@ -8,6 +8,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
+
+if not API_KEY:
+    raise SystemExit(
+        "Missing API_KEY environment variable. "
+        "Set API_KEY in your environment or .env file before running this script."
+    )
+
 BASE_URL = "https://api.golfcourseapi.com/v1"
 
 COURSES = [

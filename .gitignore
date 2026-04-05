@@ -28,3 +28,6 @@ developer_key
 
 # API keys and secrets
 .env
+
+# GitHub
+.worktrees

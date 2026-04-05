@@ -23,8 +23,8 @@ class golf_round_trackerView extends WatchUi.View {
 
         View.onUpdate(dc);
         dc.clear();
-        _hole.draw(dc);
-        _ball.draw(dc);
+        if (_hole != null) { _hole.draw(dc); }
+        if (_ball != null) { _ball.draw(dc); }
 
         // Show course name if not free play
         if (!model.isFreePlay()) {
@@ -44,7 +44,7 @@ class golf_round_trackerView extends WatchUi.View {
             dc.getWidth() / 2.5,
             dc.getHeight() / 6,
             Graphics.FONT_MEDIUM,
-            model.holeCounter,
+            model.holeCounter.toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
