@@ -1,0 +1,16 @@
+// AUTO-GENERATED FILE - DO NOT EDIT MANUALLY
+// Run `uv run tools/course_data.py` to regenerate
+
+import Toybox.Lang;
+
+function getParsForCourse(name as String) as Array<Number> {
+{% for course in courses %}
+    if (name.equals("{{ course.short_name }}")) {
+        return {{ course.pars | tojson }} as Array<Number>;
+    }
+{% endfor %}
+    return [] as Array<Number>; // Free Play or unknown course
+}
+
+// Course list for the selection screen
+const courseList = {{ course_names | tojson }} as Array<String>;
