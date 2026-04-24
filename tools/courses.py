@@ -46,7 +46,11 @@ def search_course(name: str) -> dict | None:
         if not courses:
             print(f"No results found for: {name}")
             return None
-        return courses[0]
+        for course in courses:
+            if course.get("state") == "MA":
+                return course
+        print(f"No Massachusetts match found for: {name}")
+        return None
     except requests.RequestException as e:
         print(f"Error fetching {name}: {e}")
         return None
