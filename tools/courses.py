@@ -47,7 +47,8 @@ def search_course(name: str) -> dict | None:
             print(f"No results found for: {name}")
             return None
         for course in courses:
-            if course.get("state") == "MA":
+            state = course.get("location", {}).get("state") or course.get("state", "")
+            if state in ("MA", "Massachusetts"):
                 return course
         print(f"No Massachusetts match found for: {name}")
         return None

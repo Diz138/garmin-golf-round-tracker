@@ -6,7 +6,13 @@ class golf_round_endDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
-    function onKey(keyEvent as KeyEvent) as Boolean {
-        return false; // No key handling needed on end screen for now
+    function onSelect() as Boolean {
+        var saveView = new golf_round_saveRoundView();
+        WatchUi.switchToView(
+            saveView,
+            new golf_round_saveRoundDelegate(saveView),
+            WatchUi.SLIDE_LEFT
+        );
+        return true;
     }
 }

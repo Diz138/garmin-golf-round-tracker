@@ -5,10 +5,10 @@ import Toybox.Lang;
 
 function getParsForCourse(name as String) as Array<Number> {
     if (name.equals("Pine Meadows")) {
-        return [4, 3, 4, 5, 4, 3, 5, 4, 4, 4, 3, 4, 5, 4, 3, 4, 4, 5] as Array<Number>;
+        return [5, 5, 4, 3, 4, 3, 4, 4, 3, 5, 5, 4, 3, 4, 3, 4, 4, 3] as Array<Number>;
     }
     if (name.equals("Pine Ridge CC")) {
-        return [4, 3, 4, 4, 4, 5, 4, 4, 4, 3, 4, 3, 4, 5, 4, 3, 5, 4] as Array<Number>;
+        return [4, 3, 4, 3, 4, 5, 4, 4, 3, 4, 3, 5, 4, 5, 3, 4, 4, 5] as Array<Number>;
     }
     if (name.equals("Sagamore Spring")) {
         return [5, 4, 5, 4, 4, 3, 4, 3, 3, 4, 5, 5, 4, 3, 4, 4, 3, 3] as Array<Number>;

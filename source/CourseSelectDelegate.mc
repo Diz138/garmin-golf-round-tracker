@@ -7,40 +7,36 @@ class golf_round_courseSelectDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
-    function onKey(keyEvent as KeyEvent) as Boolean {
-        var key = keyEvent.getKey();
+    function onPreviousPage() as Boolean {
         var model = getApp().model;
-
-        if (key == WatchUi.KEY_UP) {
-            if (model.courseIndex > 0) {
-                model.courseIndex--;
-                WatchUi.requestUpdate();
-            }
-            return true;
+        if (model.courseIndex > 0) {
+            model.courseIndex--;
+            WatchUi.requestUpdate();
         }
+        return true;
+    }
 
-        if (key == WatchUi.KEY_DOWN) {
-            if (model.courseIndex < courseList.size() - 1) {
-                model.courseIndex++;
-                WatchUi.requestUpdate();
-            }
-            return true;
+    function onNextPage() as Boolean {
+        var model = getApp().model;
+        if (model.courseIndex < courseList.size() - 1) {
+            model.courseIndex++;
+            WatchUi.requestUpdate();
         }
+        return true;
+    }
 
-        if (key == WatchUi.KEY_ENTER) {
-            model.selectCourse(courseList[model.courseIndex]);
-            WatchUi.switchToView(
-                new golf_round_holeSelectView(),
-                new golf_round_holeSelectDelegate(),
-                WatchUi.SLIDE_LEFT
-            );
-            return true;
-        }
+    function onSelect() as Boolean {
+        var model = getApp().model;
+        model.selectCourse(courseList[model.courseIndex]);
+        WatchUi.switchToView(
+            new golf_round_holeSelectView(),
+            new golf_round_holeSelectDelegate(),
+            WatchUi.SLIDE_LEFT
+        );
+        return true;
+    }
 
-        if (key == WatchUi.KEY_ESC) {
-            System.exit();
-        }
-
-        return false;
+    function onBack() as Boolean {
+        System.exit();
     }
 }
